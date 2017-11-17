@@ -14,6 +14,9 @@ você pode rapidamente editar as principais características visuais dos compone
    <img style="position: relative; float: left;" src="https://github.com/CyberCidades/cyber_kustom_component/blob/master/screenshots/01.png" width="350"/>
 
 </p>
+<p>
+ Para adicionar os novos componentes na paleta do netbeans, <a target="_blank" href="https://www.youtube.com/watch?v=ozqLqe9gLGA" > veja este vídeo </a>. O Jar pode ser baixado <a target="_blank" href="https://github.com/CyberCidades/cyber_kustom_component/blob/master/CyberKustomComponent-v-0-1-0.jar"> Clicando aqui. </a>
+ </p>
  <p>
  A versão 0.1.0 possui os seguintes componentes:
  </br>
@@ -25,8 +28,5 @@ você pode rapidamente editar as principais características visuais dos compone
  <p>- KTextArea == JTextArea; </p>
  <p>- KToolTip -> Variação do ToolTip; </p>
  </>
- <p>
- Para adicionar os novos componentes na paleta do netbeans, <a target="_blank" href="https://www.youtube.com/watch?v=ozqLqe9gLGA" > veja este vídeo </a>
- </p>
  
 
