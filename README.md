@@ -10,9 +10,10 @@ visuais dos componentes através de suas propriedades.
   <img style="position: relative; float: left;" src="https://github.com/CyberCidades/cyber_kustom_component/blob/master/screenshots/03.png" width="300"/>
 </p>
  <p align="center">
-  <img style="position: relative; float: left;" src="https://github.com/CyberCidades/cyber_kustom_component/blob/master/screenshots/01.png" width="250"/>
-  <img src="https://github.com/CyberCidades/cyber_kustom_component/blob/master/screenshots/04.png" width="450"/>
-  <img src="https://github.com/CyberCidades/cyber_kustom_component/blob/master/screenshots/05.png" width="450"/>
+  <img src="https://github.com/CyberCidades/cyber_kustom_component/blob/master/screenshots/04.png" width="350"/>
+  <img src="https://github.com/CyberCidades/cyber_kustom_component/blob/master/screenshots/05.png" width="350"/>
+   <img style="position: relative; float: left;" src="https://github.com/CyberCidades/cyber_kustom_component/blob/master/screenshots/01.png" width="350"/>
+
 </p>
  <p>
  A versão 0.1.0 possui os seguintes componentes:
