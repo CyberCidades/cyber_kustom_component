@@ -81,7 +81,7 @@ public final class KButton extends JButton{
             if (icon != null) {
                 setIcon(icon);
             } else {
-                setIcon(new ImageIcon(getClass().getResource("/br/com/cyber/img/check-20.png")));
+                setIcon(new ImageIcon(getClass().getResource("/br/daniel/img/check-20.png")));
             }
         }
         
@@ -100,7 +100,7 @@ public final class KButton extends JButton{
             if (icon != null) {
                 setIcon(icon);
             } else {
-                setIcon(new ImageIcon(getClass().getResource("/br/com/cyber/img/caution-20.png")));
+                setIcon(new ImageIcon(getClass().getResource("/br/daniel/img/caution-20.png")));
             }
         }
     }
