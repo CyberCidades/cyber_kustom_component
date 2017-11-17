@@ -5,11 +5,12 @@ você pode rapidamente editar as principais características visuais dos compone
 visuais dos componentes através de suas propriedades.
  </p>
  <p align="center">
-  <img style="position: relative; float: left;" src="https://github.com/CyberCidades/cyber_kustom_component/blob/master/screenshots/01.png" width="250"/>
-  <img style="position: relative; float: left;" src="https://github.com/CyberCidades/cyber_kustom_component/blob/master/screenshots/02.png" width="250"/>
-  <img style="position: relative; float: left;" src="https://github.com/CyberCidades/cyber_kustom_component/blob/master/screenshots/03.png" width="250"/>
+ 
+  <img style="position: relative; float: left;" src="https://github.com/CyberCidades/cyber_kustom_component/blob/master/screenshots/02.png" width="300"/>
+  <img style="position: relative; float: left;" src="https://github.com/CyberCidades/cyber_kustom_component/blob/master/screenshots/03.png" width="300"/>
 </p>
  <p align="center">
+  <img style="position: relative; float: left;" src="https://github.com/CyberCidades/cyber_kustom_component/blob/master/screenshots/01.png" width="250"/>
   <img src="https://github.com/CyberCidades/cyber_kustom_component/blob/master/screenshots/04.png" width="450"/>
   <img src="https://github.com/CyberCidades/cyber_kustom_component/blob/master/screenshots/05.png" width="450"/>
 </p>
