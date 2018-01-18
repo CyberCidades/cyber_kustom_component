@@ -29,11 +29,12 @@ você pode rapidamente editar as principais características visuais dos compone
  <p>- KToolTip -> Variação do ToolTip; </p>
  </>
  <p>
- Funcionalidades previstas para a versão 0.1.5 
+ Novas propriedades implementadas:
  </p>
- <p> - KTextField </p>
- <p> ---- Opção para permitir somente letras maiúsculas ou minúsculas </p>
- <p> ---- Opço para impedir espaços em brancos (para campos específicos, por exemplo, campos de e-mail) </p>
+ <p> * KTextField </p>
+ <p> ---- Propriedade Uppercase: Quando setada, todos os caracteres digitados serão MAIÚSCULOS. </p>
+ <p> ---- Propriedade k_block_white_space: Quando setada, impede que espaços em branco sejam digitados. </p>
 </br>
+
  
 
