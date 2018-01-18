@@ -20,6 +20,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -91,24 +92,20 @@ public class KTextField extends JTextField {
         }
     }
 
-    public boolean K_uppercase() {
+    public boolean getK_uppercase() {
         return k_uppercase;
     }
-
+    
     public void setK_uppercase(boolean k_uppercase) {
-        System.out.println("k block white space: "+k_block_white_space);
-        DocumentFilter filter = new SimpleSpaceDocumentFilter(k_uppercase, k_block_white_space);
-        ((AbstractDocument) getDocument()).setDocumentFilter(filter);
+        this.k_uppercase = k_uppercase;
     }
 
-    public boolean K_block_white_space() {
+    public boolean getK_block_white_space() {
         return k_block_white_space;
     }
 
     public void setK_block_white_space(boolean k_block_white_space) {
-        System.out.println("k block white space: "+k_block_white_space);
-        DocumentFilter filter = new SimpleSpaceDocumentFilter(k_uppercase, k_block_white_space);
-        ((AbstractDocument) getDocument()).setDocumentFilter(filter);
+        this.k_block_white_space = k_block_white_space;
     }
   
     public String getK_placeholder_text() {
@@ -190,6 +187,7 @@ public class KTextField extends JTextField {
     }
 
     public void setK_back_focus_lost(Color k_back_focus_lost) {
+        
         this._k_back_focus_lost = k_back_focus_lost;
     }
 
@@ -234,6 +232,14 @@ public class KTextField extends JTextField {
        
     public KTextField() {
         
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                DocumentFilters filter = new DocumentFilters(getK_uppercase(), getK_block_white_space());
+                ((AbstractDocument) getDocument()).setDocumentFilter(filter);
+            }
+        });
+        
         setBackground(_k_back_color);
         
         setBorder(BorderFactory.createEtchedBorder(1, Color.white, _k_bord_color));
@@ -244,7 +250,6 @@ public class KTextField extends JTextField {
         setMargin(new Insets(30, 30, 30, 30));
         Border border = new CompoundBorder(BorderFactory.createEtchedBorder(1, Color.white, _k_bord_color), empty);
         setBorder(border);
-       
         
         FocusListener focuslistener = new FocusListener() {
             
@@ -280,7 +285,7 @@ public class KTextField extends JTextField {
                         setBorder(border);
                     }
                 }
-                System.out.println("o k auto space é: "+_k_auto_space_proccess);
+                
                 if (_k_auto_space_proccess == true) {
                     String text = getText();
                     text = text.trim();
@@ -345,54 +350,27 @@ public class KTextField extends JTextField {
 
         //https://stackoverflow.com/a/1055865
         // Center text horizontally and vertically
-        int y = (this.getHeight() - pG.getFontMetrics().getHeight()) / 2  + pG.getFontMetrics().getAscent();
+        int y = (this.getHeight() - pG.getFontMetrics().getHeight()) / 2 + pG.getFontMetrics().getAscent();
         // y = altura textfield - altura da fonte / 2 
 
         g.drawString(_k_placeholder_text, getInsets().left, y);
     }
 }
 
-// https://stackoverflow.com/questions/11571779/java-force-jtextfield-to-be-uppercase-only
-class UppercaseDocumentFilter extends DocumentFilter {
-    
-    @Override
-    public void insertString(DocumentFilter.FilterBypass fb, int offset,
-            String text, AttributeSet attr) throws BadLocationException {
-
-        fb.insertString(offset, text.toUpperCase(), attr);
-    }
-
-    @Override
-    public void replace(DocumentFilter.FilterBypass fb, int offset, int length,
-        String text, AttributeSet attrs) throws BadLocationException {
-
-        fb.replace(offset, length, text.toUpperCase(), attrs);
-    }
-    
-//    @Override
-//    public void replace(FilterBypass fb, int i, int i1, String string, AttributeSet as) throws BadLocationException {
-//        //we want standard behavior if we are not placing space at start of JTextField
-//        //or if we are placing text at start of JTextField but first character is not whitespace
-//        if ( i!=0 || ( i==0 && !Character.isWhitespace(string.charAt(0)) ) ){
-//            super.replace(fb, i, i1, string, as);
-//        }else{
-//            System.out.println("no spaces allowed");
-//        }
-//    }
-}
-
-// https://stackoverflow.com/questions/11571779/java-force-jtextfield-to-be-uppercase-only
-class SimpleSpaceDocumentFilter extends DocumentFilter {
+/* 
+    https://stackoverflow.com/questions/11571779/java-force-jtextfield-to-be-uppercase-only
+    https://stackoverflow.com/questions/11571779/java-force-jtextfield-to-be-uppercase-only
+*/
+class DocumentFilters extends DocumentFilter {
 
     public boolean uppercase;
     
     public boolean blockwhitespace;
 
-    public SimpleSpaceDocumentFilter(boolean uppercase, boolean blockwhitespace) {
+    public DocumentFilters(boolean uppercase, boolean blockwhitespace) {
         this.uppercase = uppercase;
         this.blockwhitespace = blockwhitespace;
     }
-
     
     public boolean isUppercase() {
         return uppercase;
@@ -409,7 +387,6 @@ class SimpleSpaceDocumentFilter extends DocumentFilter {
     public void setBlockwhitespace(boolean blockwhitespace) {
         this.blockwhitespace = blockwhitespace;
     }
-    
     
     @Override
     public void insertString(DocumentFilter.FilterBypass fb, int offset,
@@ -432,7 +409,6 @@ class SimpleSpaceDocumentFilter extends DocumentFilter {
         
         if (blockwhitespace) {
             if (!Character.isWhitespace(text.charAt(0))) {
-                System.out.println("ou sou eu");
                 fb.replace(offset, length, text, attrs);
             }
         } else {

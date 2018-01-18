@@ -57,7 +57,7 @@ public class KTextFieldLogin extends JTextField {
  
         this.k_block_white_space = k_block_white_space;
         
-        DocumentFilter filter = new br.com.cyber.componente.SimpleSpaceDocumentFilter(false, k_block_white_space);
+        DocumentFilter filter = new br.com.cyber.componente.DocumentFilters(false, k_block_white_space);
         ((AbstractDocument) getDocument()).setDocumentFilter(filter);
     }
     
@@ -161,7 +161,6 @@ class SimpleSpaceDocumentFilter extends DocumentFilter {
         
         if (blockwhitespace) {
             if (!Character.isWhitespace(text.charAt(0))) {
-                System.out.println("ou sou eu");
                 fb.replace(offset, length, text, attrs);
             }
         } else {

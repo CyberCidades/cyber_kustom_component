@@ -23,6 +23,7 @@ import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.SwingUtilities;
 
 /**
  * @author Daniel M. Kuhn <www.cybercidades.com.br>
@@ -152,6 +153,23 @@ public final class KButton extends JButton{
     }
 
     public KButton() {  
+        
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                
+                if (getBk_focus_gained() == null) {
+                    setBk_focus_gained(getBackground());
+                }
+
+                if (getBk_focus_lost() == null) {
+                    setBk_focus_lost(getBackground());
+                }
+            }
+        });
+        
+        
+        
         setPreferredSize(new Dimension(100, 34));
         setFont(new Font("Century Gothic", Font.PLAIN, 16)); 
         setCursor(new Cursor(Cursor.HAND_CURSOR));

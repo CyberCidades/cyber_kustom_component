@@ -253,8 +253,6 @@ public class KComboBox extends JComboBox {
         Dimension dimension = new Dimension(200,34);
         setPreferredSize(dimension);
         
-       
-        
         getEditor().getEditorComponent().setBackground(Color.YELLOW);
         
         setFont(new FontUIResource(new Font("Century Gothic", Font.PLAIN, 14)));

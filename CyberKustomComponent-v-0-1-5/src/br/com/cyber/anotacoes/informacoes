@@ -1,0 +1,19 @@
+Novas propriedades implementadas:
+
+* KTextField
+    - Propriedade Uppercase: Quando setada, todos os caracteres digitados serão MAIÚSCULOS.
+    - Propriedade k_block_white_space: Quando setada, impede que espaços em branco sejam digitados.
+
+Correções:
+
+* KTextField
+    Problema relatado:
+    - Quando ativada a propriedade k_alert_change_text (propriedade que ao digitar novos caracteres, altera propriedades de cores),
+    as propriedades de cores eram alteradas mesmo que teclas como (Page Down, Ctrl, Shift).
+    Correção aplicada:
+    - Apenas teclas que produzem um char ao ser pressionadas fazem a propriedade k_alert_change_text ser aplicada.
+
+
+
+
+
