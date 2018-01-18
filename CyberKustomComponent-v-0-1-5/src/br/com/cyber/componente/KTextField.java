@@ -306,12 +306,14 @@ public class KTextField extends JTextField {
                     manager.focusNextComponent();
                 }
                 
-                if (_k_alert_change_text == true) {
-                    text_changed = true;
-                    setBackground(_k_back_color_change_text);
-                    Border border = new CompoundBorder(BorderFactory.createEtchedBorder(1, Color.white, _k_bord_color_change_text), empty);
-                    
-                    setBorder(border);
+                if (ke.getKeyChar() != KeyEvent.CHAR_UNDEFINED) {
+                    if (_k_alert_change_text == true) {
+                        text_changed = true;
+                        setBackground(_k_back_color_change_text);
+                        Border border = new CompoundBorder(BorderFactory.createEtchedBorder(1, Color.white, _k_bord_color_change_text), empty);
+
+                        setBorder(border);
+                    }
                 }
             }
 

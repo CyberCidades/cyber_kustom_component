@@ -31,6 +31,12 @@ public final class KButton extends JButton{
     
     private Color corborda;
     
+    public Color bk_focus_gained;
+    
+    private Color original_bk_color = null;
+    
+    private Color bk_focus_lost = null;
+    
     public ThemeOption k_theme = ThemeOption.DEFAULT;
     
     private Color GREY = new Color(236,236,236);
@@ -119,6 +125,31 @@ public final class KButton extends JButton{
         setBorder(BorderFactory.createLineBorder(corborda, 1));
         this.corborda = corborda;
     }
+    
+    public Color getBk_focus_gained() {
+        return bk_focus_gained;
+    }
+
+    public void setBk_focus_gained(Color bk_focus_gained) {
+        this.bk_focus_gained = bk_focus_gained;
+        System.out.println("o valor do focus é: "+bk_focus_gained);
+    }
+    
+    public Color getOriginal_bk_color() {
+        return original_bk_color;
+    }
+
+    public void setOriginal_bk_color(Color original_bk_color) {
+        this.original_bk_color = original_bk_color;
+    }
+
+    public Color getBk_focus_lost() {
+        return bk_focus_lost;
+    }
+
+    public void setBk_focus_lost(Color bk_focus_lost) {
+        this.bk_focus_lost = bk_focus_lost;
+    }
 
     public KButton() {  
         setPreferredSize(new Dimension(100, 34));
@@ -148,11 +179,15 @@ public final class KButton extends JButton{
             @Override
             public void focusGained(FocusEvent fe) {
                 setBorder(BorderFactory.createLineBorder(corborda, 1));
+                System.out.println("entrou no focus "+getName()+" com cor: "+bk_focus_gained);
+                setOriginal_bk_color(getBackground());
+                setBackground(getBk_focus_gained());
             }
 
             @Override
             public void focusLost(FocusEvent fe) {
                 setBorder(BorderFactory.createLineBorder(Color.BLUE, 0));
+                setBackground(getBk_focus_lost());
             }
         };
         this.addFocusListener(focusListener);
