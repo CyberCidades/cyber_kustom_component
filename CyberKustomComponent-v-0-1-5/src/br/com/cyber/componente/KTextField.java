@@ -305,7 +305,8 @@ public class KTextField extends JTextField {
                     KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
                     manager.focusNextComponent();
                 }
-                
+               
+                // https://stackoverflow.com/questions/44858930/javafx-keyevent-getcharacter-returns-null-terminated-character
                 if (ke.getKeyChar() != KeyEvent.CHAR_UNDEFINED) {
                     if (_k_alert_change_text == true) {
                         text_changed = true;
