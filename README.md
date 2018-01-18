@@ -29,7 +29,7 @@ você pode rapidamente editar as principais características visuais dos compone
  <p>- KToolTip -> Variação do ToolTip; </p>
  </>
  <p>
- Novas propriedades implementadas:
+ <strong>Novas propriedades implementadas (V 0.1.5): </strong>
  </p>
  <p> * KTextField </p>
  <p> ---- Propriedade Uppercase: Quando setada, todos os caracteres digitados serão MAIÚSCULOS. </p>
