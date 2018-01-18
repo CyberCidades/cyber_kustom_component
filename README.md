@@ -1,6 +1,6 @@
 # cyber_kustom_component
 <p>
-Este é um projeto tem como objetivo desenvolver componentes Swing personalizáveis. Com a biblioteca CyberKustomComponent,
+Este projeto tem como objetivo desenvolver uma biblioteca com componentes Swing personalizáveis. Com a biblioteca CyberKustomComponent,
 você pode rapidamente editar as principais características visuais dos componentes.
  </p>
  <p align="center">
