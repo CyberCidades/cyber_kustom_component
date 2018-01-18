@@ -28,5 +28,12 @@ você pode rapidamente editar as principais características visuais dos compone
  <p>- KTextArea == JTextArea; </p>
  <p>- KToolTip -> Variação do ToolTip; </p>
  </>
+ <p>
+ Funcionalidades previstas para a versão 0.1.5 
+ </p>
+ <p> - KTextField </p>
+ <p> ---- Opção para permitir somente letras maiúsculas ou minúsculas </p>
+ <p> ---- Opço para impedir espaços em brancos (para campos específicos, por exemplo, campos de e-mail) </p>
+</br>
  
 
