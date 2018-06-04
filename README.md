@@ -33,18 +33,18 @@ você pode rapidamente editar as principais características visuais dos compone
  </p>
 <p>Novas propriedades implementadas: </p>
 </br>
-    <p>* KTextField</p>
+    <p> - KTextField</p>
         <p>- Propriedade Uppercase: Quando setada, todos os caracteres digitados serão MAIÚSCULOS;</p>
         <p>- Propriedade k_block_white_space: Quando setada, impede que espaços em branco sejam digitados;</p>
         <p>- Propriedade maxlength: Seta o tamanho máximo de caracteres permitidos no campo (Por padrão limitado a 100 caracteres);</p>
         <p>- Propriedade k_enter_imitate_tab: Quando setada, esta propriedade habilita a transferência de foco quando pressionado o Enter (como acontece com o tab). </p>
 
-    <p>*KPasswordField</p>
+    <p> - KPasswordField</p>
         <p>- Propriedade k_enter_imitate_tab: Quando setada, esta propriedade habilita a transferência de foco quando pressionado o Enter (como acontece com o tab).</p>
 
 <p>Novos componentes implementados:</p>
 
-    <p>* KPanel </p>
+    <p> - KPanel </p>
         <p>Uma extensão do componente JPanel, KPanel implementa a definição de background estilo degradê.</p>
         A seguir estão listadas as propriedades acessíveis:
         <p>- Propriedade Caption: define um texto centralizado a ser inserido no painel;</p>
@@ -52,12 +52,12 @@ você pode rapidamente editar as principais características visuais dos compone
         <p>- Propriedade initialColor: Define a cor superior do painel;</p>
         <p>- Propriedade finalColor: Define a cor inferior do painel;</p>
 </br>
-    <p>* KLabelImage</p>
+    <p> - KLabelImage</p>
         <p>Uma extensão do componente JLabel, o componente KLabelImage permite criar labels com imagens.
         A seguir estão listadas suas propriedades acessíveis:</p>
         <p>- Propriedade image: define a imagem a ser definida no label;</p>
 </br>
-    * KLabel</p>
+   <p> - KLabel</p>
         <p>Uma extensão do componente JLabel, o componente KLabel permite que labels ao serem clicadas, abram links
         no navegador padrão definido no SO.</p>
         <p>A seguir estão listadas as propriedades acessíveis:</p>
