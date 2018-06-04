@@ -39,7 +39,6 @@ public class KToolTip {
         }
     }
     
-    
     public static void createKToolTip(String item, JComponent component) {
         
         String content = "";

@@ -37,7 +37,11 @@ public class KPasswordField extends JPasswordField {
     
     public boolean k_obrigatory = false;
     
+    public Integer maxlength = 100;
+
     String k_placeholder_text = "";
+    
+    public boolean k_enter_imitate_tab = false;
     
     Color k_placeholder_text_color = new Color(175, 175, 175);
     
@@ -55,8 +59,7 @@ public class KPasswordField extends JPasswordField {
     
     Color k_bord_error = new Color(238,120,120);
     Color k_back_error = new Color(253,198,198);
-    
-    
+      
     public boolean isAuto_space_proccess() {
         return auto_space_proccess;
     }
@@ -69,8 +72,6 @@ public class KPasswordField extends JPasswordField {
         return k_obrigatory;
     }
     
-
-
     public void setK_obrigatory(boolean k_obrigatory) {
         this.k_obrigatory = k_obrigatory;
 
@@ -152,7 +153,6 @@ public class KPasswordField extends JPasswordField {
         Border border = new CompoundBorder(BorderFactory.createEtchedBorder(1, Color.white, k_bord_color), empty);
         setBorder(border);
     }
-    
 
     public Color getK_back_focus_gained() {
         return k_back_focus_gained;
@@ -202,12 +202,27 @@ public class KPasswordField extends JPasswordField {
         this.k_back_error = k_back_error;
     }
     
+    public Integer getMaxlength() {
+        return maxlength;
+    }
+
+    public void setMaxlength(Integer maxlength) {
+        this.maxlength = maxlength;
+    }
+    
+    public boolean isK_enter_imitate_tab() {
+        return k_enter_imitate_tab;
+    }
+
+    public void setK_enter_imitate_tab(boolean k_enter_imitate_tab) {
+        this.k_enter_imitate_tab = k_enter_imitate_tab;
+    }
+    
     public static boolean isNumeric(String str)
     {
         return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
     }
     
-
     private Boolean text_changed = false;
        
     public KPasswordField() {
@@ -222,9 +237,6 @@ public class KPasswordField extends JPasswordField {
         setMargin(new Insets(30, 30, 30, 30));
         Border border = new CompoundBorder(BorderFactory.createEtchedBorder(1, Color.white, k_bord_color), empty);
         setBorder(border);
-        
-        System.out.println("valor obrigatorio: "+getK_obrigatory());
-        
         
         FocusListener focuslistener = new FocusListener() {
             
@@ -283,7 +295,7 @@ public class KPasswordField extends JPasswordField {
             @Override
             public void keyPressed(KeyEvent ke) 
             {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER)
+                if (isK_enter_imitate_tab() && ke.getKeyCode() == KeyEvent.VK_ENTER)
                 {
                     KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
                     manager.focusNextComponent();

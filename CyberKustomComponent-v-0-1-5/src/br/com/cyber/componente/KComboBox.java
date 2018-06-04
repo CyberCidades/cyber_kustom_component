@@ -287,6 +287,27 @@ public class KComboBox extends JComboBox {
             public void focusLost(FocusEvent fe) { }
         };
         this.addFocusListener(focusListener);
+        
+        
+//        /*
+//            Reconhecer key no combobox
+//        
+//            https://stackoverflow.com/questions/14056301/java-editable-jcombobox-keylistener-event-for-enter-key
+//        */
+//        getEditor().getEditorComponent().addKeyListener(new KeyAdapter() {
+//
+//            @Override
+//            public void keyReleased(KeyEvent event) {
+////                if (event.getKeyChar() == KeyEvent.VK_ENTER) {
+////                    if (((JTextComponent) ((JComboBox) ((Component) event
+////                            .getSource()).getParent()).getEditor()
+////                            .getEditorComponent()).getText().isEmpty())
+//                        System.out.println("please dont make me blank");
+//                        
+//                        showPopup();
+////                }
+//            }
+//        });
     }
   
     

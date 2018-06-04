@@ -15,7 +15,6 @@ import javax.swing.table.DefaultTableColumnModel;
 // https://stackoverflow.com/questions/10274864/removing-jtable-grid-cell-border-completely
 public class CustomDefaultTableColumnModel extends DefaultTableColumnModel{
 
-
     @Override
     public void setColumnMargin(int newMargin) {
 
@@ -24,5 +23,5 @@ public class CustomDefaultTableColumnModel extends DefaultTableColumnModel{
         //That course to paint white color grid.
         //To stop we override the setColumnMargin and pass zero to ColumnMargin.
         super.setColumnMargin(1);
-     }
+    }
 }

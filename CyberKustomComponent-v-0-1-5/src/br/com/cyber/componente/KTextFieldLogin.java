@@ -28,8 +28,8 @@ public class KTextFieldLogin extends JTextField {
     
     Color _k_placeholder_text_color = new Color(175, 175, 175);
     
-    public boolean k_block_white_space = false;  
-
+    public boolean k_block_white_space = false;
+    
 
     public String getK_placeholder_text() {
         return _k_placeholder_text;
@@ -51,13 +51,10 @@ public class KTextFieldLogin extends JTextField {
         return k_block_white_space;
     }
 
-    public void setK_block_white_space(boolean k_block_white_space) {
-        // SimpleSpaceDocumentFilter.blockwhitespace = k_block_white_space;
-        
- 
+    public void setK_block_white_space(boolean k_block_white_space) {       
         this.k_block_white_space = k_block_white_space;
         
-        DocumentFilter filter = new br.com.cyber.componente.DocumentFilters(false, k_block_white_space);
+        DocumentFilter filter = new br.com.cyber.componente.DocumentFilters(false, k_block_white_space, 0, false);
         ((AbstractDocument) getDocument()).setDocumentFilter(filter);
     }
     
@@ -111,63 +108,61 @@ public class KTextFieldLogin extends JTextField {
     }
     
     // https://stackoverflow.com/questions/11571779/java-force-jtextfield-to-be-uppercase-only
-class SimpleSpaceDocumentFilter extends DocumentFilter {
+    class SimpleSpaceDocumentFilter extends DocumentFilter {
 
-    public boolean uppercase = false;
-    
-    public boolean blockwhitespace;
+        public boolean uppercase = false;
 
-    public SimpleSpaceDocumentFilter(boolean uppercase, boolean blockwhitespace) {
-        this.uppercase = uppercase;
-        this.blockwhitespace = blockwhitespace;
-    }
+        public boolean blockwhitespace;
 
-    
-    public boolean isUppercase() {
-        return uppercase;
-    }
-
-    public void setUppercase(boolean uppercase) {
-        this.uppercase = uppercase;
-    }
-
-    public boolean isBlockwhitespace() {
-        return blockwhitespace;
-    }
-
-    public void setBlockwhitespace(boolean blockwhitespace) {
-        this.blockwhitespace = blockwhitespace;
-    }
-    
-    
-    @Override
-    public void insertString(DocumentFilter.FilterBypass fb, int offset,
-            String text, AttributeSet attr) throws BadLocationException {
-
-        if (uppercase) {
-            text = text.toUpperCase();
+        public SimpleSpaceDocumentFilter(boolean uppercase, boolean blockwhitespace) {
+            this.uppercase = uppercase;
+            this.blockwhitespace = blockwhitespace;
         }
-        
-        fb.insertString(offset, text, attr);
-    }
-    
-    @Override
-    public void replace(DocumentFilter.FilterBypass fb, int offset, int length,
-        String text, AttributeSet attrs) throws BadLocationException {
 
-        if (uppercase) {
-            text = text.toUpperCase();
+
+        public boolean isUppercase() {
+            return uppercase;
         }
-        
-        if (blockwhitespace) {
-            if (!Character.isWhitespace(text.charAt(0))) {
+
+        public void setUppercase(boolean uppercase) {
+            this.uppercase = uppercase;
+        }
+
+        public boolean isBlockwhitespace() {
+            return blockwhitespace;
+        }
+
+        public void setBlockwhitespace(boolean blockwhitespace) {
+            this.blockwhitespace = blockwhitespace;
+        }
+
+
+        @Override
+        public void insertString(DocumentFilter.FilterBypass fb, int offset,
+                String text, AttributeSet attr) throws BadLocationException {
+
+            if (uppercase) {
+                text = text.toUpperCase();
+            }
+
+            fb.insertString(offset, text, attr);
+        }
+
+        @Override
+        public void replace(DocumentFilter.FilterBypass fb, int offset, int length,
+            String text, AttributeSet attrs) throws BadLocationException {
+
+            if (uppercase) {
+                text = text.toUpperCase();
+            }
+
+            if (blockwhitespace) {
+                if (!Character.isWhitespace(text.charAt(0))) {
+                    fb.replace(offset, length, text, attrs);
+                }
+            } else {
                 fb.replace(offset, length, text, attrs);
             }
-        } else {
-            fb.replace(offset, length, text, attrs);
         }
     }
 }
-
-}
-

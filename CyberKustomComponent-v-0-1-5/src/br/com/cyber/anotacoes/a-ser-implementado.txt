@@ -1,0 +1,50 @@
+
+** KButton
+
+ - Substituir o evento MouseClick por MousePressed.
+
+
+** KTextArea
+
+   implementar isso no componente KTextArea.
+   uma propriedade que ao marcar, faz com que o comportamento padrão do tab seja alterado.
+ 
+ @Override
+            public void keyPressed(KeyEvent e) 
+            {
+                if (e.getKeyCode() == KeyEvent.VK_TAB) {
+                    
+                    // modificador: se pressionar o shift. o modificador será 1.
+                    // então, transfere foco pro anterior
+                    // senão, transfere foco pro da frente
+                    if (e.getModifiers() > 0) {
+                        jtservicos.transferFocusBackward();
+                    } else {
+                        jtservicos.transferFocus();
+                    }
+                    e.consume();
+                }
+
+
+    implementar no componente TextArea.
+    três propriedades:
+        uma propriedade com o limite de caracteres desejados;
+        uma propriedade que permite atribuir um Jlabel;
+
+    se a opção Limite de Caracteres estiver setada com algum valor diferente de null {
+        bloqueia o textarea para até o limite informado,
+        se a propriedade do Jlabel possuir um Jlabel setado {
+            ao pressionar um novo caracter, seta o texto do Jlabel passado por parâmetro com o número de caracteres.
+            // dessa forma o usuário do componente pode mostrar o número de caracteres restantes disponível
+        }
+    }
+
+
+** KTable
+
+ - Ao percorrer todos os elementos da tabela, o foco deve ser transferido para o próximo componente da tela.
+    
+
+** Fonte
+
+criar uma classe para auxiliar na selação de tipos de fonte

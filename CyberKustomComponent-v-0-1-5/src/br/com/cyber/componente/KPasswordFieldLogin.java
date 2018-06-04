@@ -11,9 +11,11 @@ package br.com.cyber.componente;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.KeyboardFocusManager;
 import java.awt.RenderingHints;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import javax.swing.JPasswordField;
-
 
 /**
  *
@@ -43,6 +45,25 @@ public class KPasswordFieldLogin extends JPasswordField {
     }
     
     public KPasswordFieldLogin() {
+        
+        KeyListener keylistener = new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent ke) { }
+
+            @Override
+            public void keyPressed(KeyEvent ke) 
+            {
+                if (ke.getKeyCode() == KeyEvent.VK_ENTER)
+                {
+                    KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+                    manager.focusNextComponent();
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent ke) { }
+        };
+        this.addKeyListener(keylistener);
     }
     
     @Override

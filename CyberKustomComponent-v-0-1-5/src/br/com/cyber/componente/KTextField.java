@@ -18,6 +18,8 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -43,7 +45,13 @@ public class KTextField extends JTextField {
     
     public boolean k_uppercase = false;
     
-    public boolean k_block_white_space = false;  
+    public boolean k_block_white_space = false;
+    
+    public boolean k_single_white_space = false;
+    
+    public Integer maxlength = 100;
+    
+    public boolean k_enter_imitate_tab = false;
     
     String _k_placeholder_text = "";
     
@@ -101,6 +109,9 @@ public class KTextField extends JTextField {
     }
 
     public boolean getK_block_white_space() {
+        if (k_block_white_space) {
+            k_single_white_space = false;
+        }
         return k_block_white_space;
     }
 
@@ -186,8 +197,7 @@ public class KTextField extends JTextField {
         return _k_back_focus_lost;
     }
 
-    public void setK_back_focus_lost(Color k_back_focus_lost) {
-        
+    public void setK_back_focus_lost(Color k_back_focus_lost) {       
         this._k_back_focus_lost = k_back_focus_lost;
     }
 
@@ -222,7 +232,36 @@ public class KTextField extends JTextField {
     public void setK_back_error(Color k_back_error) {
         this._k_back_error = k_back_error;
     }
-    
+
+    public Integer getMaxlength() {
+        return maxlength;
+    }
+
+    public void setMaxlength(Integer maxlength) {
+        this.maxlength = maxlength;
+    }
+
+    public boolean isK_single_white_space() {
+        
+        if (k_single_white_space) {
+            k_block_white_space = false;
+        }
+        
+        return k_single_white_space;
+    }
+
+    public void setK_single_white_space(boolean k_single_white_space) {
+        this.k_single_white_space = k_single_white_space;
+    }
+
+    public boolean isK_enter_imitate_tab() {
+        return k_enter_imitate_tab;
+    }
+
+    public void setK_enter_imitate_tab(boolean k_enter_imitate_tab) {
+        this.k_enter_imitate_tab = k_enter_imitate_tab;
+    }
+
     public static boolean isNumeric(String str)
     {
         return str.matches("-?\\d+(\\.\\d+)?");  //match a number with optional '-' and decimal.
@@ -235,11 +274,13 @@ public class KTextField extends JTextField {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                DocumentFilters filter = new DocumentFilters(getK_uppercase(), getK_block_white_space());
+                DocumentFilters filter = new DocumentFilters(getK_uppercase(), getK_block_white_space(), getMaxlength(), isK_single_white_space());
                 ((AbstractDocument) getDocument()).setDocumentFilter(filter);
+                setCaretPosition(getText().length());
             }
         });
-        
+        setCaretPosition(getText().length());
+
         setBackground(_k_back_color);
         
         setBorder(BorderFactory.createEtchedBorder(1, Color.white, _k_bord_color));
@@ -276,6 +317,8 @@ public class KTextField extends JTextField {
                     setBorder(border);
                 }
                 
+                text_changed = false;
+
                 if (_k_obrigatory == true) {
                     String dados = getText();
                     
@@ -298,6 +341,27 @@ public class KTextField extends JTextField {
         
         this.addFocusListener(focuslistener);
         
+        MouseListener mouselistener = new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                setCaretPosition(viewToModel(e.getPoint()));
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {}
+
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        };
+        
+        this.addMouseListener(mouselistener);
+        
         KeyListener keylistener = new KeyListener() {
             @Override
             public void keyTyped(KeyEvent ke) { }
@@ -305,14 +369,14 @@ public class KTextField extends JTextField {
             @Override
             public void keyPressed(KeyEvent ke) 
             {
-                if (ke.getKeyCode() == KeyEvent.VK_ENTER)
+                if (isK_enter_imitate_tab() && ke.getKeyCode() == KeyEvent.VK_ENTER)
                 {
                     KeyboardFocusManager manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
                     manager.focusNextComponent();
                 }
                
                 // https://stackoverflow.com/questions/44858930/javafx-keyevent-getcharacter-returns-null-terminated-character
-                if (ke.getKeyChar() != KeyEvent.CHAR_UNDEFINED) {
+                if (ke.getKeyChar() != KeyEvent.CHAR_UNDEFINED || ke.getKeyCode() != KeyEvent.VK_ESCAPE && ke.getKeyCode() != KeyEvent.VK_ESCAPE) {
                     if (_k_alert_change_text == true) {
                         text_changed = true;
                         setBackground(_k_back_color_change_text);
@@ -359,17 +423,26 @@ public class KTextField extends JTextField {
 
 /* 
     https://stackoverflow.com/questions/11571779/java-force-jtextfield-to-be-uppercase-only
-    https://stackoverflow.com/questions/11571779/java-force-jtextfield-to-be-uppercase-only
 */
 class DocumentFilters extends DocumentFilter {
 
     public boolean uppercase;
     
     public boolean blockwhitespace;
+    
+    public Integer maxlenght;
+    
+    private Integer lenght = 0;
 
-    public DocumentFilters(boolean uppercase, boolean blockwhitespace) {
+    private boolean singlewhitespace;
+    
+    private boolean last_is_space = false;
+    
+    public DocumentFilters(boolean uppercase, boolean blockwhitespace, Integer maxlenght, boolean singlewhitespace) {
         this.uppercase = uppercase;
         this.blockwhitespace = blockwhitespace;
+        this.maxlenght = maxlenght;
+        this.singlewhitespace = singlewhitespace;
     }
     
     public boolean isUppercase() {
@@ -387,11 +460,47 @@ class DocumentFilters extends DocumentFilter {
     public void setBlockwhitespace(boolean blockwhitespace) {
         this.blockwhitespace = blockwhitespace;
     }
+
+    public Integer getLenght() {
+        return lenght;
+    }
+
+    public void setLenght(Integer lenght) {
+        this.lenght = lenght;
+    }
+    
+    public void incrementLenght() {
+        this.lenght = this.lenght +1;
+    }
+    
+    public void decrementLencht() {
+        this.lenght = this.lenght -1;
+    }
+
+    public boolean isSinglewhitespace() {
+        return singlewhitespace;
+    }
+
+    public void setSinglewhitespace(boolean singlewhitespace) {
+        this.singlewhitespace = singlewhitespace;
+    }
+                
+    @Override
+    public void remove(DocumentFilter.FilterBypass fb, int offset,
+            int lenght) throws BadLocationException { 
+        
+        if (isSinglewhitespace()) {
+            last_is_space = false;
+        }
+        
+        fb.remove(offset, lenght);
+        decrementLencht();
+    }
     
     @Override
     public void insertString(DocumentFilter.FilterBypass fb, int offset,
             String text, AttributeSet attr) throws BadLocationException {
-
+        
         if (uppercase) {
             text = text.toUpperCase();
         }
@@ -402,17 +511,116 @@ class DocumentFilters extends DocumentFilter {
     @Override
     public void replace(DocumentFilter.FilterBypass fb, int offset, int length,
         String text, AttributeSet attrs) throws BadLocationException {
-
+        
         if (uppercase) {
             text = text.toUpperCase();
         }
-        
-        if (blockwhitespace) {
-            if (!Character.isWhitespace(text.charAt(0))) {
-                fb.replace(offset, length, text, attrs);
-            }
+        if (maxlenght != 0) {
+            if (getLenght() < maxlenght) {
+                // não bloqueia espaço e não é espaço simples
+                if (!isBlockwhitespace() && ! isSinglewhitespace()) {
+                    fb.replace(offset, length, text, attrs);
+                    incrementLenght();
+                }
+
+                // se ta bloqueado, nunca será singlewhite
+                if (isBlockwhitespace()) {
+                    
+                    if (text=="") { // para funcionar o textfield.settext();
+                        fb.replace(offset, length, text, attrs);
+                        incrementLenght();
+                    } else {
+                        if (!Character.isWhitespace(text.charAt(0))) {
+                            fb.replace(offset, length, text, attrs);
+                            incrementLenght();
+                        }
+                    }
+                }
+
+                if (isSinglewhitespace()) {
+                    
+                    // condição especial, para que toda vez que for primeiro dígito do campo
+                    // considera que um suposto anterior seja espaço.
+                    // para não começar em espaço
+                    if (offset == 0) {
+                        last_is_space = true;
+                    }
+                    
+                    if (!last_is_space) {
+                        fb.replace(offset, length, text, attrs);
+                        incrementLenght();
+                        
+                        if (Character.isWhitespace(text.charAt(0))) {
+                            last_is_space = true;
+                        } else {
+                            last_is_space = false;
+                        }
+                    } else {
+                        if (text=="") { // para funcionar o textfield.settext();
+                            fb.replace(offset, length, text, attrs);
+                            incrementLenght();
+                        } else {
+                            if (!Character.isWhitespace(text.charAt(0))) {
+                                fb.replace(offset, length, text, attrs);
+                                incrementLenght();
+                            }
+                            
+                            if (Character.isWhitespace(text.charAt(0))) {
+                                last_is_space = true;
+                            } else {
+                                last_is_space = false;
+                            }
+                        }
+                    }
+                }
+            } 
         } else {
-            fb.replace(offset, length, text, attrs);
+            // não bloqueia espaço e não é espaço simples
+            if (!isBlockwhitespace() && ! isSinglewhitespace()) {
+                fb.replace(offset, length, text, attrs);
+                incrementLenght();
+            }
+            
+            // se ta bloqueado, nunca será singlewhite
+            if (isBlockwhitespace()) {
+                if (!Character.isWhitespace(text.charAt(0))) {
+                    fb.replace(offset, length, text, attrs);
+                    incrementLenght();
+                }
+            }
+            
+            // se é single, nunca será bloqueado
+            if (isSinglewhitespace()) {
+                
+                // condição especial, para que toda vez que for primeiro dígito do campo
+                // considera que um suposto anterior seja espaço.
+                // para não começar em espaço
+                if (offset == 0) {
+                    last_is_space = true;
+                }
+                
+                if (!last_is_space) {
+                    fb.replace(offset, length, text, attrs);
+                    incrementLenght();
+
+                    if (Character.isWhitespace(text.charAt(0))) {
+                        last_is_space = true;
+                    } else {
+                        last_is_space = false;
+                    }
+                } else {
+                    if (!Character.isWhitespace(text.charAt(0))) {
+                        fb.replace(offset, length, text, attrs);
+                        incrementLenght();
+                    }
+
+                    if (Character.isWhitespace(text.charAt(0))) {
+                        last_is_space = true;
+                    } else {
+                        last_is_space = false;
+                    }
+                }
+            }
         }
     }
 }

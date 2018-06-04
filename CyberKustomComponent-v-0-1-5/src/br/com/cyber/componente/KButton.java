@@ -5,7 +5,6 @@
  */
 package br.com.cyber.componente;
 
-
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -133,7 +132,6 @@ public final class KButton extends JButton{
 
     public void setBk_focus_gained(Color bk_focus_gained) {
         this.bk_focus_gained = bk_focus_gained;
-        System.out.println("o valor do focus é: "+bk_focus_gained);
     }
     
     public Color getOriginal_bk_color() {
@@ -168,8 +166,6 @@ public final class KButton extends JButton{
             }
         });
         
-        
-        
         setPreferredSize(new Dimension(100, 34));
         setFont(new Font("Century Gothic", Font.PLAIN, 16)); 
         setCursor(new Cursor(Cursor.HAND_CURSOR));
@@ -184,7 +180,6 @@ public final class KButton extends JButton{
             public void keyPressed(KeyEvent e) 
             {
                 setBorder(BorderFactory.createLineBorder(Color.WHITE, 0));
-                doClick();
             }
         };
         this.addKeyListener(keylistener);
@@ -197,15 +192,17 @@ public final class KButton extends JButton{
             @Override
             public void focusGained(FocusEvent fe) {
                 setBorder(BorderFactory.createLineBorder(corborda, 1));
-                System.out.println("entrou no focus "+getName()+" com cor: "+bk_focus_gained);
-                setOriginal_bk_color(getBackground());
+//                System.out.println("entrou no focus "+getName()+" com cor: "+bk_focus_gained);
+//                setOriginal_bk_color(getBackground());
                 setBackground(getBk_focus_gained());
             }
 
             @Override
             public void focusLost(FocusEvent fe) {
                 setBorder(BorderFactory.createLineBorder(Color.BLUE, 0));
-                setBackground(getBk_focus_lost());
+//                if (getBk_focus_lost() != null) {
+                    setBackground(getBk_focus_lost());
+//                }
             }
         };
         this.addFocusListener(focusListener);

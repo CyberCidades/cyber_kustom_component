@@ -1,0 +1,50 @@
+Novas propriedades implementadas:
+
+    * KTextField
+        - Propriedade Uppercase: Quando setada, todos os caracteres digitados serão MAIÚSCULOS;
+        - Propriedade k_block_white_space: Quando setada, impede que espaços em branco sejam digitados;
+        - Propriedade maxlength: Seta o tamanho máximo de caracteres permitidos no campo (Por padrão limitado a 100 caracteres);
+        - Propriedade k_enter_imitate_tab: Quando setada, esta propriedade habilita a transferência de foco quando pressionado o Enter (como acontece com o tab). 
+
+    *KPasswordField
+        - Propriedade k_enter_imitate_tab: Quando setada, esta propriedade habilita a transferência de foco quando pressionado o Enter (como acontece com o tab). 
+
+Novos componentes implementados:
+
+    * KPanel 
+        Uma extensão do componente JPanel, KPanel implementa a definição de background estilo degradê.
+        A seguir estão listadas as propriedades acessíveis:
+        - Propriedade Caption: define um texto centralizado a ser inserido no painel;
+        - Propriedade textColor: Define a cor de textos informados na propriedade Caption;
+        - Propriedade initialColor: Define a cor superior do painel;
+        - Propriedade finalColor: Define a cor inferior do painel;
+
+    * KLabelImage
+        Uma extensão do componente JLabel, o componente KLabelImage permite criar labels com imagens.
+        A seguir estão listadas suas propriedades acessíveis:
+        - Propriedade image: define a imagem a ser definida no label;
+
+    * KLabel
+        Uma extensão do componente JLabel, o componente KLabel permite que labels ao serem clicadas, abram links
+        no navegador padrão definido no SO.
+        A seguir estão listadas as propriedades acessíveis:
+        - Propriedade link: define o link da página a ser aberta;
+
+    
+        
+Correções:
+
+    * KTextField
+        1. Problema relatado:
+            - Quando ativada a propriedade k_alert_change_text (propriedade que ao digitar novos caracteres, altera propriedades de cores),
+            as propriedades de cores eram alteradas mesmo que teclas que não produzem caracteres (Page Down, Ctrl, Shift).
+        
+            Correção aplicada:
+            - Apenas teclas as teclas pressionadas que produzem um char fazem a cor definida na propriedade k_alert_change_text ser aplicada.
+
+        2. Problema relatado:
+            - Quando ativada a propriedade k_single_space, ao inserir um espaço e pressionar a tecla backspace, ao pressionar novamente
+            o espaço, não insere espaços.
+
+            Correção aplicada:
+            - Alteração do código de forma que toda vez que for pressionado a tecla backspace, permite inserir espaço

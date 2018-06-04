@@ -26,12 +26,9 @@ public class DefaultHeaderRenderer extends JLabel implements TableCellRenderer {
     
     public DefaultHeaderRenderer() {
         setFont(new Font("Century Gothic", Font.PLAIN, 15));
-        
-        setOpaque(true);
-        
+        setOpaque(true);   
         setForeground(Color.WHITE);
         setBackground(Color.DARK_GRAY);
-      
         setSize(new Dimension(120, 10));
         setPreferredSize(new Dimension(0, 30));
         
@@ -58,12 +55,10 @@ public class DefaultHeaderRenderer extends JLabel implements TableCellRenderer {
         setBorder(new CompoundBorder(border, margin));
     }
     
-    
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value,
             boolean isSelected, boolean hasFocus, int row, int column) {
             setText(value.toString());
-            setToolTipText((String) value);
             
         return this;
     }

@@ -23,18 +23,11 @@ public class KTextArea extends JTextArea {
     public KTextArea() {
         setPreferredSize(new Dimension(100, 34));
         setFont(new Font("Century Gothic", Font.PLAIN, 16)); 
-      //  setCursor(new Cursor(Cursor.HAND_CURSOR));
-//        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
-      //  setCursor(Cursor.getDefaultCursor());  //https://stackoverflow.com/questions/9073687/wait-cursor-and-disable-java-application
-
         setFocusable(true);
         setOpaque(true);
         setLineWrap(true);
         setWrapStyleWord(true);
         setMargin(new Insets(1, 1, 1, 1));
- 
-        getHighlighter().removeAllHighlights();
-        setHighlighter(null);
 
         FocusListener focusListener = new FocusAdapter() {
 

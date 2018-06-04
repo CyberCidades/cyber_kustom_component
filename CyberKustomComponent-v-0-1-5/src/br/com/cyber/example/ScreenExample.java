@@ -5,16 +5,29 @@
  */
 package br.com.cyber.example;
 
+import javax.swing.UIManager;
+
 /**
  *
  * @author Daniel M. Kuhn <www.cybercidades.com.br>
  */
+
 public class ScreenExample extends javax.swing.JFrame {
 
     /**
      * Creates new form ScreenExample
      */
     public ScreenExample() {
+        
+        /**
+         * Para setar o layout do ScrollBar
+         */
+        
+        UIManager.put("ScrollBarUI", "br.com.cyber.componente.code.MyScrollBarUI");
+        UIManager.getLookAndFeelDefaults().put("ScrollBar:\"ScrollBar.button\".size", 0);
+        UIManager.getLookAndFeelDefaults().put("ScrollBar.decrementButtonGap", 0);
+        UIManager.getLookAndFeelDefaults().put("ScrollBar.incrementButtonGap", 0);
+        
         initComponents();
     }
 
@@ -32,8 +45,8 @@ public class ScreenExample extends javax.swing.JFrame {
         kButton1 = new br.com.cyber.componente.KButton();
         kComboBox1 = new br.com.cyber.componente.KComboBox();
         jLabel2 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        ktable1 = new br.com.cyber.componente.Ktable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        ktable2 = new br.com.cyber.componente.Ktable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,8 +75,18 @@ public class ScreenExample extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Ubuntu", 0, 26)); // NOI18N
         jLabel2.setText("Example Screen");
 
-        ktable1.setModel(new javax.swing.table.DefaultTableModel(
+        ktable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null},
@@ -73,7 +96,8 @@ public class ScreenExample extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(ktable1);
+        ktable2.setHeadercolor(new java.awt.Color(153, 153, 255));
+        jScrollPane2.setViewportView(ktable2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -83,13 +107,13 @@ public class ScreenExample extends javax.swing.JFrame {
                 .addGap(66, 66, 66)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(kTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(kTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(kComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(kButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel2)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 528, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2))
                 .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -103,9 +127,9 @@ public class ScreenExample extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(kTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(kComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -174,10 +198,10 @@ public class ScreenExample extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private br.com.cyber.componente.KButton kButton1;
     private br.com.cyber.componente.KComboBox kComboBox1;
     private br.com.cyber.componente.KTextField kTextField1;
-    private br.com.cyber.componente.Ktable ktable1;
+    private br.com.cyber.componente.Ktable ktable2;
     // End of variables declaration//GEN-END:variables
 }
