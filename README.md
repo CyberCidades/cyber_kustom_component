@@ -31,20 +31,19 @@ você pode rapidamente editar as principais características visuais dos compone
  <p>
  <strong>Novas propriedades implementadas (V 0.1.5): </strong>
  </p>
-<p>Novas propriedades implementadas: </p>
 <br>
-    <p> KTextField</p>
+    <p><strong>KTextField</strong></p>
         <p>- Propriedade Uppercase: Quando setada, todos os caracteres digitados serão MAIÚSCULOS;</p>
         <p>- Propriedade k_block_white_space: Quando setada, impede que espaços em branco sejam digitados;</p>
         <p>- Propriedade maxlength: Seta o tamanho máximo de caracteres permitidos no campo (Por padrão limitado a 100 caracteres);</p>
         <p>- Propriedade k_enter_imitate_tab: Quando setada, esta propriedade habilita a transferência de foco quando pressionado o Enter (como acontece com o tab). </p>
 <br>
-    <p> KPasswordField</p>
+    <p><strong>KPasswordField</strong></p>
         <p>- Propriedade k_enter_imitate_tab: Quando setada, esta propriedade habilita a transferência de foco quando pressionado o Enter (como acontece com o tab).</p>
 
 <p>Novos componentes implementados:</p>
 <br>
-    <p> KPanel </p>
+    <p><strong>KPanel</strong></p>
         <p>Uma extensão do componente JPanel, KPanel implementa a definição de background estilo degradê.</p>
         A seguir estão listadas as propriedades acessíveis:
         <p>- Propriedade Caption: define um texto centralizado a ser inserido no painel;</p>
@@ -52,12 +51,12 @@ você pode rapidamente editar as principais características visuais dos compone
         <p>- Propriedade initialColor: Define a cor superior do painel;</p>
         <p>- Propriedade finalColor: Define a cor inferior do painel;</p>
 <br>
-    <p> KLabelImage</p>
+    <p><strong>KLabelImage</strong></p>
         <p>Uma extensão do componente JLabel, o componente KLabelImage permite criar labels com imagens.
         A seguir estão listadas suas propriedades acessíveis:</p>
         <p>- Propriedade image: define a imagem a ser definida no label;</p>
 <br>
-   <p> KLabel</p>
+   <p><strong>KLabel</strong></p>
         <p>Uma extensão do componente JLabel, o componente KLabel permite que labels ao serem clicadas, abram links
         no navegador padrão definido no SO.</p>
         <p>A seguir estão listadas as propriedades acessíveis:</p>
